@@ -10,11 +10,25 @@
     <style>
       nav{
         background-color: lightgray;
+        padding: 3px;
+        height: 50px;
       }
 
       nav ul{
         display: flex;
         list-style-type: none;
+      }
+
+      nav li{
+        margin-right: 25px;
+      }
+
+      .underlined{
+        text-decoration: underline;
+      }
+
+      .highlighted{
+        background-color: yellow;
       }
     </style>
 </head>
@@ -28,19 +42,32 @@
     <h3>
       by Paul Lockhart
     </h3>
+    <h4>
+      Annotations by Zoe Anderson
+    </h4>
   </header>
+
+  <aside style="float: right;">
+    <b>Legend</b>
+    underline = <br>
+    highlight =
+  </aside>
 
   <nav>
     <ul>
       <li><a href="#p1">Paragraph 1</a></li>
       <li><a href="#p2">Paragraph 2</a></li>
       <li><a href="#p3">Paragraph 3</a></li>
+      <li><a href="#p4">Paragraph 4</a></li>
+      <li><a href="#p5">Paragraph 5</a></li>
+      <li><a href="#p6">Paragraph 6</a></li>
+      <li><a href="#p7">Paragraph 7</a></li>
     </ul>
   </nav>
 
   <article style = "margin: 30px;"> 
     <p id="p1">A musician wakes from a <b>terrible nightmare</b>. In his dream he finds himself in a society where
-      music education has been made mandatory. <blockquote>“We are helping our students become more
+      <span class="underlined">music education has been made mandatory.</span> <blockquote>“We are helping our students become more
         competitive in an increasingly sound-filled world.”</blockquote> Educators, school systems, and the state are
       put in charge of this vital project. Studies are commissioned, committees are formed, and
       decisions are made— all without the advice or participation of a single working musician or
@@ -67,7 +94,7 @@
         because I had the stems pointing the wrong way.”</blockquote>
     </p>
 
-    <p>
+    <p id="p4">
       In their wisdom, educators soon realize that even very young children can be given this kind
       of musical instruction. In fact it is considered quite shameful if one’s third-grader hasn’t
       completely memorized his circle of fifths. “I’ll have to get my son a music tutor. He simply
@@ -75,7 +102,7 @@
       the window, humming tunes to himself and making up silly songs.”
     </p>
     
-    <p>
+    <p id="p5">
       In the higher grades the pressure is really on. After all, the students must be prepared for the
       standardized tests and college admissions exams. Students must take courses in Scales and
       Modes, Meter, Harmony, and Counterpoint. “It’s a lot for them to learn, but later in college
@@ -92,7 +119,7 @@
       She’s going to make one hell of a musician someday.”</blockquote>
     </p>
     
-    <p>
+    <p id="p6">
       Waking up in a cold sweat, the musician realizes, gratefully, that it was all just a crazy
       dream. <blockquote>“Of course!” he reassures himself, “No society would ever reduce such a beautiful and
         meaningful art form to something so mindless and trivial; no culture could be so cruel to its
@@ -102,7 +129,7 @@
 
     <p>...</p>
 
-    <p>
+    <p id="p7">
       <b>Sadly, our present system of mathematics education is precisely this kind of nightmare.</b> In
       fact, if I had to design a mechanism for the express purpose of destroying a child’s natural
       curiosity and love of pattern-making, I couldn’t possibly do as good a job as is currently being
