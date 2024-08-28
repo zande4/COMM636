@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML TEXT Part 1</title>
     <style>
+
       nav{
         background-color: lightgray;
         padding: 3px;
@@ -30,6 +31,17 @@
       .highlighted{
         background-color: yellow;
       }
+
+      table{
+        border-collapse: collapse;
+        margin: 30px;
+      }
+
+      td, th{
+        border: 1px solid black;
+        padding: 15px;
+        text-align: center;
+      }
     </style>
 </head>
 
@@ -49,7 +61,7 @@
       by Paul Lockhart
     </h3>
     <h4>
-      Annotations by Zoe Anderson
+      "Annotations" by Zoe Anderson
     </h4>
   </header>
 
@@ -111,10 +123,10 @@
       ever get to hear the sounds that the black dots represent.</span> Nevertheless, it is important that every
       member of society be able to recognize a modulation or a fugal passage, regardless of the fact
       that they will never hear one. <blockquote>“To tell you the truth, most students just aren’t very good at music.
-      They are bored in class, their skills are terrible, and their homework is barely legible. Most of
+      They are bored in class, their skills are <span class="highlighted">terrible</span>, and their homework is barely legible. Most of
       them couldn’t care less about how important music is in today’s world; they just want to take the
       minimum number of music courses and be done with it. <span class="underlined">I guess there are just music people and
-      non-music people.</span> I had this one kid, though, man was she sensational! Her sheets were
+      non-music people.</span> I had this one kid, though, man was she <span class="highlighted">sensational!</span> Her sheets were
       impeccable— every note in the right place, perfect calligraphy, sharps, flats, just beautiful.
       She’s going to make one hell of a musician someday.”</blockquote>
     </p>
@@ -130,12 +142,26 @@
     <p>...</p>
 
     <p id="p7">
-      <b>Sadly, our present system of mathematics education is precisely this kind of nightmare.</b> In
+      <span class="underlined">Sadly, our present system of mathematics education is precisely this kind of <b>nightmare.</b></b></span> In
       fact, if I had to design a mechanism for the express purpose of destroying a child’s natural
       <span class="highlighted">curiosity and love</span> of pattern-making, I couldn’t possibly do as good a job as is currently being
       done— I simply wouldn’t have the imagination to come up with the kind of <span class="highlighted">senseless, soulcrushing</span> ideas 
       that constitute contemporary mathematics education.
     </p>
   </article>
+  <table>
+    <tr>
+      <th>Quote</th> <th>Literary Device</th> <th>Line</th>
+    </tr>
+    <tr>
+      <td>"ludicrous... theory"</td> <td>irony</td> <td>5</td>
+    </tr>
+    <tr>
+      <td>"In their wisdom..."</td> <td>metaphor</td> <td>20</td>
+    </tr>
+    <tr>
+      <td>"beautiful... trivial"</td> <td>juxtaposition</td> <td>50</td>
+    </tr>
+  </table>
 </body>
 </html>
