@@ -31,6 +31,8 @@
             height: 100px;
             width: 100px;
             margin: 10px;
+            animation-name: test;
+            animation-duration: 5s;
         }
 
         .inlineLarge {
@@ -40,6 +42,11 @@
             background-color: magenta;
             text-decoration-line: overline underline;
             text-decoration-style: wavy;
+        }
+
+        @keyframes test{
+            from {background-color: white;}
+            to {background-color: red;}
         }
     </style>
 </head>
@@ -64,7 +71,7 @@
             <div class="inlineSquare" style="background-color: yellow;">
                 <div class="inlineSquare" style="background-color: green;">
                     <div class="inlineSquare" style="background-color: blue;">
-                        <div class="inlineSquare" style="background-color: purple;"> <span style="background-color: #aa00ff40">These nested divs are overflowing because they are all the same height</span></div>
+                        <div class="inlineSquare" style="background-color: purple;"> <span style="color: white; background-color: #ff00e640">These nested divs are overflowing because they are all the same height</span></div>
                     </div>
                 </div>
             </div>
