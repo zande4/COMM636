@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="UTF-8" lang="en" dir = "ltr" >
+    <meta name="description" content="color experiementation CSS">
+    <meta name="author" content="Zoe Anderson">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Demo</title>
+    <style>
+        main {
+            padding: 10px;
+            display: flex;
+            background-color: seagreen;
+            justify-content: space-around;
+        }
+
+        div {
+            padding: 20px;
+            border-color: blue;
+            border-width: 5px;
+        }
+
+        p {
+            background-color:aqua;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        .inlineSquare {
+            display: inline-block;
+            background-color: red;
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+        }
+
+        .inlineLarge {
+            display: inline;
+            line-height: 200px;
+            margin: 50px;
+            background-color: magenta;
+            text-decoration-line: overline underline;
+            text-decoration-style: wavy;
+        }
+    </style>
+</head>
+<body style="background-color: pink;">
+    <main>
+        <div style="background-color: honeydew;">
+            This is a div!
+            <div style="background-color: purple;">
+                this is another div
+            </div>
+        </div>
+        <p> this is a paragraph element</p>
+        <div class="inlineSquare">&nbsp;</div>
+    </main>
+
+    <aside class="inlineLarge">
+        This is an inline element with really tall line height.
+    </aside>
+
+    <div class="inlineSquare">
+        <div class="inlineSquare" style="background-color: orange;">
+            <div class="inlineSquare" style="background-color: yellow;">
+                <div class="inlineSquare" style="background-color: green;">
+                    <div class="inlineSquare" style="background-color: blue;">
+                        <div class="inlineSquare" style="background-color: purple;"> <span style="background-color: #aa00ff40">These nested divs are overflowing because they are all the same height</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
