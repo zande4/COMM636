@@ -10,7 +10,6 @@ a {
 main {
     width: 80%;
     margin: 30vh auto;
-    height: 20%;
     text-align: center;
 }
 
@@ -33,12 +32,12 @@ main {
 }
 
 .hidden {
-    display: none;
+    opacity: 0.1;
 }
 
 /*not sure if viable chatgpt says it is*/
-.trigger:hover .hidden {
-    display: block;
+.hidden:hover{
+    opacity: 1;
 }
 
 .trigger:hover {
@@ -50,5 +49,12 @@ main {
     display: inline-block;
     width: 70px;
     height: 27px;
+}
+
+ul {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0px !important;
+    margin: 0px !important;
 }
 
