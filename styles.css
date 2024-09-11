@@ -1,55 +1,54 @@
 body {
-    font-family: "Sevillana";
-    font-size: 18px;
-    background-color: pink;
+    background-color: rgb(35, 159, 35);
+    font-size: 30px;
 }
 
 a {
-    color: rgb(249, 71, 101);
+    color: rgb(111, 183, 247);
 }
 
-h1{
+main {
+    width: 80%;
+    margin: 30vh auto;
+    height: 20%;
     text-align: center;
 }
 
-nav {
-    background-color: lightpink;
-    padding: 3px;
-    height: 50px;
-    border: solid rgb(249, 71, 101);
+.hide {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-nav ul {
-    display: flex;
-    list-style-type: none;
+.hide:hover{
+    display: none;
 }
 
-nav li {
-    margin-right: 25px;
+.show {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.comment {
+.hidden {
+    display: none;
+}
+
+/*not sure if viable chatgpt says it is*/
+.trigger:hover .hidden {
     display: block;
-    border: solid rgb(249, 71, 101);
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    padding: 0px !important;
 }
 
-table{
-    border-collapse: collapse;
-    margin: 30px;
-    background-color: rgb(248, 126, 147);;
+.trigger:hover {
+    background-color: purple;
 }
 
-td, th {
-    border: 1px solid black;
-    padding: 15px;
+.container {
+    position: relative;
+    display: inline-block;
+    width: 70px;
+    height: 27px;
 }
 
-.sprite {
-    width: 100px;
-    height: 100px;
-}
