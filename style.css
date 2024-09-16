@@ -11,7 +11,8 @@ personalize this portfolio page using google fonts, different colors, different 
     https://www.linkedin.com/learning-login/share?account=42563596&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fcss-layouts-from-float-to-flexbox-and-grid%2Fthe-box-model-and-layouts%3Ftrk%3Dshare_video_url%26shareId%3DnbY4ZLwhR2KIGIplOu9BiA%253D%253D*/
 
 body{
-    background-color: white;
+    background-color: rgb(255, 157, 157);
+    font-family: 'Poppins', sans-serif;
 }
 
 header, footer {
