@@ -36,7 +36,6 @@ main {
     opacity: 0.1;
 }
 
-/*not sure if viable chatgpt says it is*/
 .hidden:hover{
     opacity: 1;
 }
@@ -57,5 +56,10 @@ ul {
     display: inline-block;
     padding: 0px !important;
     margin: 0px !important;
+}
+
+@keyframes fade{
+    from {background-color: rgb(84 171 205);}
+    to {background-color: #000000}
 }
 
