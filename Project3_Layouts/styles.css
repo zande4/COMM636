@@ -4,6 +4,10 @@
     grid-template-areas: 'header header header header header header side' 'title . . . wide wide side' 'title . . . wide wide side' 'title . . . wide wide side';
 }
 
+.grid-container > div {
+    border: solid black;
+}
+
 .wide{
     grid-area: wide;
 }
