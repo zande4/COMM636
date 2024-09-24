@@ -25,16 +25,23 @@
     const main = document.getElementById("main");
     function toggle() {
         if (main.getAttribute('class') == "grid-container"){
-            main.setAttribute('class', 'unideal-flex');
+            main.classList.remove('grid-container');
+            main.classList.add('unideal-flex');
+            toggleButton.innerHTML = "Switch to grid";
         }
         else{
-            main.setAttribute('class', 'grid-container');
+            main.classList.add('grid-container');
+            main.classList.remove('unideal-flex');
+            toggleButton.innerHTML = "Switch to flex";
         }
     }
 
     function boxModel(){
         if (checkbox.checked){
-            document.querySelector('main').
+            document.querySelector('main').classList.add('reveal-box')
+        }
+        else {
+            main.classList.remove('reveal-box');
         }
     }
 </script>
