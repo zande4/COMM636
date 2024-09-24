@@ -1,0 +1,27 @@
+.grid-container{
+    display: grid;
+
+}
+
+.unideal-grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-area: ;
+}
+
+.flex-container{
+    display: flex;
+}
+
+.unideal-flex{
+    display: grid;
+}
+
+.reveal-box{
+    background-color: lightgreen;
+    border: lightyellow;
+}
+
+.reveal-box p{
+    background-color: lightblue;
+}

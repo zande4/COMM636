@@ -1,0 +1,40 @@
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" lang="en" dir = "ltr" >
+        <meta name="description" content="early internet, hypertext narrative">
+        <meta name="author" content="Zoe Anderson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../styles.css"></link>
+        <title>Early Internet</title>
+    </head>
+    <body>
+        <p>
+            This example page uses grid area, a styling methid that is difficult to replicate using flexbox.
+        </p>
+        <main class="grid-container" id="main">
+
+        </main>
+        <button onclick="toggle()" id="toggle">Switch to Flex</button>
+        <label for="box-model">Show box model</label>
+        <input type="checkbox" id="box-model"></input>
+    </body>
+</html>
+<script>
+    const checkbox = document.getElementById("box-model");
+    const toggleButton = document.getElementById("toggle")
+    const main = document.getElementById("main");
+    function toggle() {
+        if (main.getAttribute('class') == "grid-container"){
+            main.setAttribute('class', 'unideal-flex');
+        }
+        else{
+            main.setAttribute('class', 'grid-container');
+        }
+    }
+
+    function boxModel(){
+        if (checkbox.checked){
+            document.querySelector('main').
+        }
+    }
+</script>
