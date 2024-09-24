@@ -1,6 +1,23 @@
 .grid-container{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-template-areas: 'header header header header header header side' 'title . . . wide wide side' 'title . . . wide wide side' 'title . . . wide wide side';
+}
+
+.wide{
+    grid-area: wide;
+}
+
+.side{
+    grid-area: side;
+}
+
+.header{
+    grid-area: header;
+}
+
+.title{
+    grid-area: title;
 }
 
 .unideal-grid{
