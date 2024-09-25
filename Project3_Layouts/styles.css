@@ -1,3 +1,6 @@
+.body{
+    background-color: rgb(136, 255, 209);
+}
 .grid-container{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -5,7 +8,7 @@
 }
 
 .grid-container > div {
-    border: solid black;
+    border: 2px solid black;
 }
 
 .wide{
