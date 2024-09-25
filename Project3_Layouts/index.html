@@ -21,6 +21,34 @@
              Flex Example
          </button>
     </div>
+
+    <p>
+        Box-model information:
+        Each element in the DOM, is rendered with some pixel value for each of the following:
+    </p>
+    <ul>
+        <li>Content</li>
+        <li>Padding</li>
+        <li>Border</li>
+        <li>Margin</li>
+    </ul>
+    <p>
+        The only value that can't be directly manipulated is content - the space taken up by what's inside an element.
+        The values are rendered in the order shown above. Border-color styles the border pixels, while background color
+        styles both the content and padding pixels. Margins add space between elements.
+    </p>
+    <div style="background-color: orange; width: 75%; height: 250px; margin: auto;">
+        Margin
+        <div style="background-color: yellow; margin: auto; width: 90%; height: 90%">
+            Border
+            <div style="background-color: lightgreen; margin: auto; width: 90%; height: 90%">
+                Padding
+                <div style="background-color: lightblue; margin: auto; width: 90%; height: 90%; text-align:center;">
+                    Content
+                </div>
+            </div>
+        </div>
+    </div>
     
 </body>
 </html>
