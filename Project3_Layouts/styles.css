@@ -11,6 +11,7 @@ button{
 }
 
 .grid-container{
+    border: 2px solid black;
     margin: 20px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -19,6 +20,8 @@ button{
 
 .grid-container > div {
     border: 2px solid black;
+    text-align: center;
+    padding: 10px;
 }
 
 .wide{
