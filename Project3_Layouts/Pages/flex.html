@@ -12,11 +12,67 @@
             This page uses flex-shrink and flex-grow which are difficult to replicate in grid.
         </p>
         <button onclick="window.location.href='../index.html'">Home</button>
-        <main class="flex-container">
-
+        <main class="flex-container" id="main-flex">
+            <div>
+                <p>My name is Zoe and I am a communications student.</p>
+            </div>
+            <div style="flex-shrink: 3; flex-basis: auto;">
+                <p>Hello</p>
+            </div>
+            <div>
+                <p>I also study computer science and am currently taking COMP 211 and COMP 301</p>
+            </div>
+            <div>
+                <p>What about you?</p>
+            </div>
         </main>
-        <button id="button">Switch to Grid</button>
+        <main class="unideal-grid" id="main-grid" style="display: none;">
+            <div>
+                <p>My name is Zoe and I am a communications student.</p>
+            </div>
+            <div style="flex-shrink: 3; flex-basis: auto;">
+                <p>Hello</p>
+            </div>
+            <div>
+                <p>I also study computer science and am currently taking COMP 211 and COMP 301</p>
+            </div>
+            <div>
+                <p>What about you?</p>
+            </div>
+        </main>
+        <button onclick="toggle()" id="toggle">Switch to Grid</button>
         <label for="box-model">Show box model</label>
-        <input type="checkbox" id="box-model"></input>
+        <input type="checkbox" id="box-model" onchange="boxModel()"></input>
     </body>
 </html>
+<script>
+    const checkbox = document.getElementById("box-model");
+    const toggleButton = document.getElementById("toggle")
+    const maingrid = document.getElementById("main-grid");
+    const mainflex = document.getElementById("main-flex");
+    function toggle() {
+        if (maingrid.style.display == "grid"){
+            maingrid.style.display = "none";
+            mainflex.style.display = "flex";
+            toggleButton.innerHTML = "Switch to Grid";
+        }
+        else{
+            maingrid.style.display = "grid";
+            mainflex.style.display = "none";
+            toggleButton.innerHTML = "Switch to Flex";
+        }
+    }
+
+    function boxModel(){
+        if (checkbox.checked){
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.add('reveal-box');
+            });
+        }
+        else {
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.remove('reveal-box');
+            });
+        }
+    }
+</script>

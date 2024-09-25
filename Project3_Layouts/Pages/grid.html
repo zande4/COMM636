@@ -12,7 +12,7 @@
             This example page uses grid area, a styling method that is difficult to replicate using flexbox.
         </p>
         <button onclick="window.location.href='../index.html'">Home</button>
-        <main class="grid-container" id="main">
+        <main class="grid-container" id="main-grid" style="display: grid">
             <div class="header">
                 header
             </div>
@@ -44,34 +44,77 @@
                 text
             </div>
         </main>
+        <main class="unideal-flex" id="main-flex">
+            <div class='container'>
+                <div class="header">
+                    header
+                </div>
+                <div class="row-container">
+                    <div class="title">
+                        title card
+                    </div>
+                    <div class="items">
+                        <div>
+                            text
+                        </div>
+                        <div>
+                            text
+                        </div>
+                        <div>
+                            text
+                        </div>
+                        <div>
+                            text
+                        </div>
+                        <div>
+                            text
+                        </div>
+                        <div>
+                            text
+                        </div>
+                    </div>
+                    <div class="wide">
+                        wide item
+                    </div>
+                </div>
+            </div>
+            <div class="side">
+                side info
+            </div>
+        </main>
         <button onclick="toggle()" id="toggle">Switch to Flex</button>
         <label for="box-model">Show box model</label>
-        <input type="checkbox" id="box-model"></input>
+        <input type="checkbox" id="box-model" onchange="boxModel()"></input>
     </body>
 </html>
 <script>
     const checkbox = document.getElementById("box-model");
-    const toggleButton = document.getElementById("toggle")
-    const main = document.getElementById("main");
+    const toggleButton = document.getElementById("toggle");
+    const maingrid = document.getElementById("main-grid");
+    const mainflex = document.getElementById("main-flex");
     function toggle() {
-        if (main.getAttribute('class') == "grid-container"){
-            main.classList.remove('grid-container');
-            main.classList.add('unideal-flex');
-            toggleButton.innerHTML = "Switch to grid";
+        if (maingrid.style.display == "grid"){
+            maingrid.style.display = "none";
+            mainflex.style.display = "flex";
+            toggleButton.innerHTML = "Switch to Grid";
         }
         else{
-            main.classList.add('grid-container');
-            main.classList.remove('unideal-flex');
-            toggleButton.innerHTML = "Switch to flex";
+            maingrid.style.display = "grid";
+            mainflex.style.display = "none";
+            toggleButton.innerHTML = "Switch to Flex";
         }
     }
 
     function boxModel(){
         if (checkbox.checked){
-            document.querySelector('main').classList.add('reveal-box')
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.add('reveal-box');
+            });
         }
         else {
-            main.classList.remove('reveal-box');
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.remove('reveal-box');
+            });
         }
     }
 </script>
