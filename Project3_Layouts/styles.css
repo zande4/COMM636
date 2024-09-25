@@ -1,9 +1,11 @@
 body{
     background-color: rgb(136, 255, 209);
+    font-family: Arial;
 }
 
 p{
     margin: 20px;
+    font-size: 22px;
 }
 
 button{
@@ -146,10 +148,15 @@ button{
 }
 
 .reveal-box{
-    background-color: lightgreen;
-    border: 1px solid yellow;
+    background-color: lightgreen!important;
+    border: 10px solid orange!important;
 }
 
-.reveal-box p{
-    background-color: lightblue;
+.reveal-box  div{
+    background-color: lightgreen!important;
+    border: 1px solid yellow!important;
+}
+
+.reveal-box span, .reveal-box p{
+    background-color: lightblue!important;
 }

@@ -65,12 +65,12 @@
 
     function boxModel(){
         if (checkbox.checked){
-            document.querySelectorAll('*').forEach(element => {
+            document.querySelectorAll('main').forEach(element => {
                 element.classList.add('reveal-box');
             });
         }
         else {
-            document.querySelectorAll('*').forEach(element => {
+            document.querySelectorAll('main').forEach(element => {
                 element.classList.remove('reveal-box');
             });
         }

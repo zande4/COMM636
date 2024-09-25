@@ -16,72 +16,72 @@
         <button onclick="window.location.href='../index.html'">Home</button>
         <main class="grid-container" id="main-grid" style="display: grid">
             <div class="header">
-                header
+                <span>header</span>
             </div>
             <div class="title">
-                title card
+                <span>title card</span>
             </div>
             <div class="wide">
-                wide item
+                <span>wide item</span>
             </div>
             <div class="side">
-                side info
+                <span>side info</span>
             </div>
             <div>
-                text
+                <span>text</span>
             </div>
             <div>
-                text
+                <span>text</span>
             </div>
             <div>
-                text
+                <span>text</span>
             </div>
             <div>
-                text
+                <span>text</span>
             </div>
             <div>
-                text
+                <span>text</span>
             </div>
             <div>
-                text
+                <span>text</span>
             </div>
         </main>
         <main class="unideal-flex" id="main-flex">
             <div class='container'>
                 <div class="header">
-                    header
+                    <span>header</span>
                 </div>
                 <div class="row-container">
                     <div class="title">
-                        title card
+                        <span>title card</span>
                     </div>
                     <div class="items">
                         <div>
-                            text
+                            <span>text</span>
                         </div>
                         <div>
-                            text
+                            <span>text</span>
                         </div>
                         <div>
-                            text
+                            <span>text</span>
                         </div>
                         <div>
-                            text
+                            <span>text</span>
                         </div>
                         <div>
-                            text
+                            <span>text</span>
                         </div>
                         <div>
-                            text
+                            <span>text</span>
                         </div>
                     </div>
                     <div class="wide">
-                        wide item
+                        <span>wide item</span>
                     </div>
                 </div>
             </div>
             <div class="side">
-                side info
+                <span>side info</span>
             </div>
         </main>
         <button onclick="toggle()" id="toggle">Switch to Flex</button>
@@ -109,12 +109,12 @@
 
     function boxModel(){
         if (checkbox.checked){
-            document.querySelectorAll('*').forEach(element => {
+            document.querySelectorAll('main').forEach(element => {
                 element.classList.add('reveal-box');
             });
         }
         else {
-            document.querySelectorAll('*').forEach(element => {
+            document.querySelectorAll('main').forEach(element => {
                 element.classList.remove('reveal-box');
             });
         }
