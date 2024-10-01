@@ -1,0 +1,56 @@
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8" lang="en" dir = "ltr" >
+    <meta name="description" content="HTML, CSS, layouts, flexbox, grid">
+    <meta name="author" content="Zoe Anderson">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css"></link>
+    <title>JavaScript</title>
+</head>
+<body>
+    <header>
+        <h1>My Pet HTML Div</h1>
+    </header>
+    <aside>
+        <h3>Change Color:</h3>
+        <select name="color" id="select">
+            <option value="pink">Pink</option>
+            <option value="lightgreen">Green</option>
+            <option value="lightblue">Blue</option>
+            <option value="plum">Purple</option>
+            <option value="orange">Orange</option>
+        </select>
+        <br>
+        <br>
+        <h3 style="display: inline;">Pet Counter: </h3><span id="count">0</span>
+    </aside>
+    <main>
+        <div id="pet">
+            <div id="face">
+                ＞﹏＜
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+<script>
+    const pet = document.getElementById("pet");
+    const select = document.getElementById("select");
+    const face = document.getElementById("face");
+    const count = document.getElementById("count");
+    let petCount = 0;
+    select.addEventListener('change', function(){
+        colorPicker();
+    });
+    pet.addEventListener('click', function(){
+        petCount++;
+        count.innerHTML = petCount;
+        if(petCount >= 10){
+            face.innerHTML = 'o((>ω< ))o';
+        }
+    })
+
+    function colorPicker(){
+        pet.style.backgroundColor = select.value;
+    }
+</script>

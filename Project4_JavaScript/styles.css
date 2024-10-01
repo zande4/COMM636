@@ -1,0 +1,39 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('./Images/polka.png');
+    background-repeat: repeat;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside{
+    float: right;
+    width: 12vw;
+    background-color: rgb(251, 242, 112);
+    border: 3px dashed plum;
+    padding: 20px;
+    margin: 30px;
+    height: 50vh;
+    user-select: none;
+}
+
+#pet{
+    background-color: pink;
+    border-radius: 100%;
+    width: 70vh;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#face{
+    width: 60%;
+    text-align: center;
+    font-size: 8vh;
+    user-select: none;
+}
