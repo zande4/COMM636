@@ -12,7 +12,7 @@ personalize this portfolio page using google fonts, different colors, different 
 
 body{
     background-color: rgb(255, 157, 157);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
 }
 
 header, footer {
@@ -22,11 +22,6 @@ header, footer {
     align-items: center;
     border: 1px solid black;
     /* background-color: rgb(82, 99, 69);  play with a color scheme! */
-}
-
-main {
-    font-family: 'Times New Roman', Times, serif; /* try using a google font instead*/
-    border: 1px, solid, black;
 }
 
 nav {
@@ -55,8 +50,7 @@ nav {
     max-width: 960px;
     grid-template-columns: 1fr 1fr 1fr; /* question: what does fr mean? answer: fraction*/
     grid-template-rows: auto; /*adjust rows according to screen*/
-    grid-column-gap: 10px;
-    grid-row-gap: 15px; 
+    grid-gap: 15px; 
     /* background: rgba(102, 119, 59, 0.5);  play with color*/
     
 }
