@@ -4,7 +4,7 @@ body {
 
 nav, footer{
     display: flex;
-    flex-direction: rows;
+    flex-direction: row;
     background-color: lightblue;
 }
 
@@ -22,9 +22,9 @@ button{
 }
 
 video{
-    width: 80%;
+    width: 70%;
     height: auto;
-    margin: 0 10%;
+    margin: 0 15%;
 }
 
 .work-grid{
