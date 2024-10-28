@@ -13,7 +13,7 @@ nav a, footer a{
 }
 
 button{
-    background-color: aqua;
+    background-color: lightblue;
     cursor: pointer;
     padding: 10px;
     font-family: inherit;
@@ -47,6 +47,7 @@ video{
         'image blurb' 
         'title .';
     transition: all 0.5s ease;
+    cursor: pointer;
 }
 
 .card img{
@@ -73,6 +74,7 @@ video{
 .active{
     flex-basis: 100%;
     width: 100%;
+    cursor: default;
 }
 
 .card .focus{
