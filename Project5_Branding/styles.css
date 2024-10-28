@@ -1,0 +1,86 @@
+body {
+    font-family: "roboto mono", serif;
+}
+
+nav, footer{
+    display: flex;
+    flex-direction: rows;
+    background-color: lightblue;
+}
+
+nav a, footer a{
+    padding: 10px;
+}
+
+button{
+    background-color: aqua;
+    cursor: pointer;
+    padding: 10px;
+    font-family: inherit;
+    width: 100px;
+    margin: 0 auto;
+}
+
+video{
+    width: 80%;
+    height: auto;
+    margin: 0 10%;
+}
+
+.work-grid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card{
+    flex-basis: 400px;
+    display: grid;
+    margin: 10px;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 3px;
+    border-color: pink;
+    background-color: pink;
+    grid-template-areas: 
+        'image blurb' 
+        'title .';
+    transition: all 0.5s ease;
+}
+
+.card img{
+    grid-area: image;
+    width: 400px;
+    transition: all 0.5s ease;
+}
+
+.card .title{
+    grid-area: title;
+    margin-left: 10px;
+}
+
+.card .blurb{
+    display: none;
+    grid-area: blurb;
+    margin-left: 15px;
+}
+
+.active .blurb{
+    display: block;
+}
+
+.active{
+    flex-basis: 100%;
+    width: 100%;
+}
+
+.card .focus{
+    display: none;
+    width: 400px;
+}
+
+.active .focus{
+    display: block;
+}
+
