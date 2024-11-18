@@ -1,0 +1,88 @@
+.post{
+    border-radius: 5px;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 40px 300px 50px;
+    margin: 20px;
+}
+
+.post-title, .post-content{
+    padding: 10px;
+}
+
+.post-footer{
+    display: flex;
+    align-items: center;
+}
+
+.upvote, .downvote{
+    width: 30px;
+    height: 30px;
+}
+
+h1{
+    display: inline;
+}
+
+header{
+    height: max-content;
+}
+
+#pfp{
+    Width: 50px;
+    display: inline;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    background-color: white;
+    margin: 15px;
+}
+
+.react{
+    border-radius: 45%;
+    background-color: gray;
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    min-width: 15px;
+    max-width: 100%;
+    max-height: 100%;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+}
+
+.react img{
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    width: auto;
+}
+
+#subreddit-name{
+    margin: 0px;
+    float: left;
+    /*centering provided by chatgpt*/
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#banner-wrapper{
+    position: relative;
+    height: max-content;
+}
+
+#join-button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0px;
+    padding: 10px;
+    background-color: lightblue;
+    border-radius: 40%;
+    border-image: none;
+    border-style: none;
+}
+
+body{
+    background-color: rgb(49, 49, 49);
+}
