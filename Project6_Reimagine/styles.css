@@ -71,6 +71,7 @@ header{
 .react img{
     width: 100%;
     height: 100%;
+    user-select: none;
 }
 
 #subreddit-name{
@@ -107,6 +108,7 @@ dialog{
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
+    box-shadow: 10px 10px 5px;
 }
 
 #username-input-wrapper{

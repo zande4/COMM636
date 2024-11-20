@@ -2,6 +2,7 @@
 //main features:
 // -sort
 // -upvote/downvote
+//      -how to/should I limit the number of upvotes
 // -comment
 // -report
 // -customize
@@ -22,6 +23,7 @@ class Post {
         this.bodyText = bodyText;
         this.numUpvotes = 0;
         this.comments = [];
+        this.div = this.toDiv();
     }
 
     toDiv(){
@@ -88,10 +90,14 @@ class Post {
 
     upvote(){
         this.numUpvotes++;
+        const counter = this.div.querySelector('.upvote-count');
+        counter.innerText = this.numUpvotes;
     }
 
     downvote(){
         this.numUpvotes--;
+        const counter = this.div.querySelector('.upvote-count');
+        counter.innerText = this.numUpvotes;
     }
 }
 
@@ -112,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const main = document.querySelector('main');
     for (let post of posts){
         if (post != null){
-            main.appendChild(post.toDiv());
+            main.appendChild(post.div);
         }
     }
 
@@ -120,12 +126,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if(!localStorage.getItem('username')){
         const welcome = document.getElementById('welcome');
         welcome.style.display = "block";
+        document.body.style.overflow = "hidden";
         //method for detecting that user has finished entering username provided by chatGPT
         const userInput = document.getElementById('username-input');
         userInput.addEventListener('keydown', function(event){
             if (event.key === 'Enter') {
                 username = userInput.value;
                 welcome.style.display = 'none';
+                document.body.style.overflow = "visible";
             }
         });
     }
@@ -140,10 +148,6 @@ function joinLeaveSubreddit(){
         document.getElementById('join-button').innerText = 'Joined';
         isMember = true;
     }
-}
-
-function downvote(){
-
 }
 
 function report(){
