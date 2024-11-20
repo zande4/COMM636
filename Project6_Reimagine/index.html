@@ -12,10 +12,23 @@
         <img id="banner">
         <div id="banner-wrapper">
             <img id="pfp">
-            <h1 id="subreddit-name">r/<span>NewOldReddit</span></h1>
-            <button id="join-button">Join</button>
+            <h1 id="subreddit-name">r/NewOldReddit</h1>
+            <button id="join-button" onclick="joinLeaveSubreddit()">Join</button>
+            <img id="pfp-user">
         </div>
     </header>
+
+    <dialog id="welcome">
+        <p>Hello! Welcome to Reddit Reimagined.</p>
+        <p>This project is meant to challenge how we view online spaces like reddit.</p>
+        <p>Please enter your username to begin.</p>
+        <div id="username-input-wrapper">
+            <img>
+            <label for="username-input">Username: </label>
+            <input id="username-input">
+        </div>
+    </dialog>
+
     <main>
         <section class="post">
             <div class="post-title">
@@ -25,9 +38,9 @@
                 Hey guys this is my first post ever!1!
             </div>
             <div class="post-footer">
-                <img class='upvote' src="./Graphics/arrow-up.png">
-                <div class="upvote-count react"><span class="num-upvote">70</span></div>
-                <img class='downvote' src="./Graphics/arrow-up.png">
+                <div class='upvote react'></div>
+                <div class="upvote-count react">70</div>
+                <div class='downvote react'></div>
                 <div class="comment react"></div>
                 <div class="dot react"></div>
             </div>
@@ -41,14 +54,28 @@
                 Hey guys this is my first post ever!1!
             </div>
             <div class="post-footer">
-                <div class="upvote react"><span class="num-upvote">70</span></div>
+                <div class="upvote react"></div>
+                <div class="upvote-count react">70</div>
+                <div class="downvote react"></div>
                 <div class="comment react"></div>
                 <div class="dot react"></div>
             </div>
         </section>
 
         <section class="post">
-
+            <div class="post-title">
+                My First Post
+            </div>
+            <div class="post-content">
+                Hey guys this is my first post ever!1!
+            </div>
+            <div class="post-footer">
+                <div class="upvote react"></div>
+                <div class="upvote-count react">70</div>
+                <div class="downvote react"></div>
+                <div class="comment react"></div>
+                <div class="dot react"></div>
+            </div>
         </section>
     </main>
 </body>

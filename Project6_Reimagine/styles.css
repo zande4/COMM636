@@ -13,11 +13,17 @@
 .post-footer{
     display: flex;
     align-items: center;
+    margin: 5px;
+}
+
+.upvote-count{
+    text-align: center;
 }
 
 .upvote, .downvote{
     width: 30px;
     height: 30px;
+    margin: 5px;
 }
 
 h1{
@@ -37,24 +43,34 @@ header{
     margin: 15px;
 }
 
+#pfp-user{
+    width: 20px;
+    display: inline;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+
 .react{
-    border-radius: 45%;
+    border-radius: 50%;
     background-color: gray;
     display: inline-block;
     padding: 5px;
     margin: 5px;
     min-width: 15px;
-    max-width: 100%;
-    max-height: 100%;
+    height: 80%;
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
 }
 
 .react img{
-    max-width: 100%;
-    max-height: 100%;
-    height: auto;
-    width: auto;
+    width: 100%;
+    height: 100%;
 }
 
 #subreddit-name{
@@ -75,7 +91,7 @@ header{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 0px;
+    right: 55px;
     padding: 10px;
     background-color: lightblue;
     border-radius: 40%;
@@ -85,4 +101,10 @@ header{
 
 body{
     background-color: rgb(49, 49, 49);
+}
+
+dialog{
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
 }
