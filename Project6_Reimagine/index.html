@@ -11,7 +11,7 @@
     <header>
         <img id="banner">
         <div id="banner-wrapper">
-            <img id="pfp">
+            <img id="pfp-main" class="pfp">
             <h1 id="subreddit-name">r/NewOldReddit</h1>
             <button id="join-button" onclick="joinLeaveSubreddit()">Join</button>
             <img id="pfp-user">
@@ -23,9 +23,11 @@
         <p>This project is meant to challenge how we view online spaces like reddit.</p>
         <p>Please enter your username to begin.</p>
         <div id="username-input-wrapper">
-            <img>
-            <label for="username-input">Username: </label>
-            <input id="username-input">
+            <img class="pfp">
+            <div>
+                <label for="username-input">Username: </label>
+                <input id="username-input">
+            </div>
         </div>
     </dialog>
 
