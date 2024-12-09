@@ -1,8 +1,6 @@
 //TO DO:
 //main features:
 // -sort
-// -upvote/downvote
-//      -how to/should I limit the number of upvotes
 // -comment
 // -report
 // -customize
@@ -12,6 +10,7 @@ let isMember = false;
 let username = "";
 let pfpSrc = "";
 let karma = 0;
+let sort = "new";
 let numPosts = 0;
 const DEFAULT_COLORS = ["#FFFFFF", "#000000", "#CCCCCC", "#333333"];
 let style = {
@@ -112,7 +111,7 @@ class Post {
         }
         const counter = this.div.querySelector('.upvote-count');
         counter.innerText = this.numUpvotes;
-        
+        render();
     }
 
     downvote(){
@@ -127,6 +126,7 @@ class Post {
         }
         const counter = this.div.querySelector('.upvote-count');
         counter.innerText = this.numUpvotes;
+        render();
     }
 }
 
@@ -170,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //User setup
     if(!localStorage.getItem('username')){
-        console.log("I believe I have no username!");
         const welcome = document.getElementById('welcome');
         welcome.style.display = "block";
         document.body.style.overflow = "hidden";
@@ -197,10 +196,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     if(localStorage.getItem('isMember')){
         isMember = localStorage.getItem('isMember');
+        if(isMember){
+            console.log("I just set isMember to true by reading local storage!");
+        }
     }
     if(localStorage.getItem('style')){
         style = localStorage.getItem('style');
     }
+    const usernameSpan = document.getElementById('username');
+    usernameSpan.innerText = username;
+
+    const join = document.getElementById('join-button');
+    if(isMember){
+        console.log("the boolean expression which triggered this block is: ",  isMember);
+        console.log("I am setting the joined text at render");
+        join.innerText = 'Joined';
+    }
+    else{
+        join.innerText = 'Join';
+    }
+    render();
 
 });
 
@@ -213,6 +228,7 @@ function joinLeaveSubreddit(){
         document.getElementById('join-button').innerText = 'Joined';
         isMember = true;
     }
+    localStorage.setItem('isMember', isMember);
 }
 
 function showEditDialog(){
@@ -241,7 +257,7 @@ function showEditDialog(){
 function showMakePost(){
     const makePost = document.getElementById('make-post');
     const postAllow = document.getElementById('post-allowed');
-    const disallow = documnet.getElementById('post-not-allowed');
+    const disallow = document.getElementById('post-not-allowed');
     if (isMember){
         colors = makePost.querySelectorAll('.color');
         colors.forEach((color, i) => {
@@ -259,6 +275,14 @@ function showMakePost(){
 
 function render(){
     const main = document.querySelector('main');
+    const karmaCount = document.getElementById('karma');
+    karmaCount.innerText = karma;
+    if (sort == "new"){
+        posts.sort((a, b) => b.id - a.id);
+    }
+    if (sort == "top"){
+        posts.sort((a, b) => b.numUpvotes - a.numUpvotes);
+    }
     for (let post of posts){
         if (post != null){
             main.appendChild(post.div);
