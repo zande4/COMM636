@@ -6,7 +6,29 @@
     margin: 20px;
 }
 
-.post-title, .post-content{
+input::selection{
+    border-color: white;
+}
+
+input{
+    margin: 10px;
+}
+
+textarea{
+    width: 100%;
+    height: 300px;
+}
+
+nav{
+    display: flex;
+}
+
+.post-title{
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+.post-content{
     padding: 10px;
 }
 
@@ -43,17 +65,18 @@ header{
     margin: 15px;
 }
 
-#pfp-user{
-    width: 20px;
-    display: inline;
-    aspect-ratio: 1 / 1;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0px;
-    padding: 10px;
+#edit-button{
     background-color: white;
     border-radius: 50%;
+    padding: 5px;
+    margin: 5px;
+}
+
+.outer-ui{
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 5px;
 }
 
 .react{
@@ -86,14 +109,18 @@ header{
 #banner-wrapper{
     position: relative;
     height: max-content;
+    display: flex;
+    justify-content: space-between;
+}
+
+#rh-banner-wrapper{
+    display: flex;
+    align-items: center;
 }
 
 #join-button{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 55px;
     padding: 10px;
+    margin: 5px;
     background-color: lightblue;
     border-radius: 25%;
     border-image: none;
@@ -115,4 +142,33 @@ dialog{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.float-right{
+    float: right;
+    height: 25px;
+}
+
+.panel{
+    display: none;
+    position: fixed;
+    width: 50vw;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: solid black 3px;
+    padding: 20px;
+}
+
+.color{
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+    width: 20px;
+    aspect-ratio: 1 / 1;
+    pointer-events: none;
+    /*Because position is not absolute z-index will not apply, however, I need the element to otherwise be in the normal flow so absolute does not really work*/
+    z-index: 2
 }

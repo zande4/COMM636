@@ -11,10 +11,16 @@
     <header>
         <img id="banner">
         <div id="banner-wrapper">
-            <img id="pfp-main" class="pfp">
-            <h1 id="subreddit-name">r/NewOldReddit</h1>
-            <button id="join-button" onclick="joinLeaveSubreddit()">Join</button>
-            <img id="pfp-user">
+            <div>
+                <img id="pfp-main" class="pfp">
+                <h1 id="subreddit-name">r/NewOldReddit</h1>
+            </div>
+            <div id="rh-banner-wrapper">
+                <div class='outer-ui' id="create-post" onclick="showMakePost()">Create Post</div>
+                <div id='edit-button' onclick="showEditDialog()"><img src="./Graphics/pencil.svg"></div>
+                <button id="join-button" onclick="joinLeaveSubreddit()">Join</button>
+                <img id="pfp-user" class='pfp' src ='./Graphics/logo.svg' onclick="(function() { document.getElementById('profile').style.display = 'block'; })()">
+            </div>
         </div>
     </header>
 
@@ -23,8 +29,8 @@
         <p>This project is meant to challenge how we view online spaces like reddit.</p>
         <p>Please enter your username to begin.</p>
         <div id="username-input-wrapper">
-            <img class="pfp">
-            <input type="file" id="imageUpload" accept="image/*">
+            <img class="pfp" src="./Graphics/logo.svg" id="pfp-selector">
+            <input type="file" id="pfp-image-upload" accept="image/*" onchange="(function() { fileUpload('pfp-image-upload', 'pfp-selector'); fileUpload('pfp-image-upload', 'pfp-user');})()">
             <div>
                 <label for="username-input">Username: </label>
                 <input id="username-input">
@@ -32,54 +38,61 @@
         </div>
     </dialog>
 
+    <section id="profile" class="panel target-parent">
+        <div data-action="close" class="react float-right">
+            <img data-action="close" src="./Graphics/x.svg">
+        </div>
+        <img>
+        <span id="username">Username</span>
+    </section>
+
+    <section id="edit" class="panel target-parent">
+        <div data-action="close" class="react float-right">
+            <img data-action="close" src="./Graphics/x.svg">
+        </div>
+        <p>You do not have enough Karma to make edits. Become a part of the community to influence it.</p>
+        <p>Here are some ways to obtain Karma</p>
+        <ul>
+            <li>Like posts</li>
+            <li>Make posts</li>
+            <li>Make comments</li>
+        </ul>
+    </section>
+
+    <section id="make-post" class="panel target-parent">
+        <div data-action="close" class="react float-right">
+            <img data-action="close" src="./Graphics/x.svg">
+        </div>
+        <p>Make posts here.</p>
+        <!--Semantic HTML provided by chatGPT-->
+        <fieldset>
+            <legend>Choose a color:</legend>
+            <label for="color1" style="display: inline-block; position: relative;">
+                <input type="radio" id="color1" name="color" value="0" style="position: absolute;">
+                <div class="color"></div>
+            </label>
+                
+            <label for="color2" style="display: inline-block; position: relative;">
+                <input type="radio" id="color2" name="color" value="1" style=" position: absolute;">
+                <div class="color"></div>
+            </label>
+            <label for="color3" style="display: inline-block; position: relative;">
+                <input type="radio" id="color3" name="color" value="2" style=" position: absolute;">
+                <div class="color"></div>
+            </label>
+            <label for="color4" style="display: inline-block; position: relative;">
+                <input type="radio" id="color4" name="color" value="3" style=" position: absolute;">
+                <div class="color"></div>
+            </label>
+        </fieldset>
+        <input id='new-post-title' type="text" placeholder="Title">
+        <br>
+        <textarea id='new-post-text' placeholder="Write something"></textarea>
+        <button onclick="makePost()">Post</button>
+    </section>
+    <nav><div id="sort"></div></nav>
     <main>
-        <section class="post">
-            <div class="post-title">
-                My First Post
-            </div>
-            <div class="post-content">
-                Hey guys this is my first post ever!1!
-            </div>
-            <div class="post-footer">
-                <div class='upvote react'></div>
-                <div class="upvote-count react">70</div>
-                <div class='downvote react'></div>
-                <div class="comment react"></div>
-                <div class="dot react"></div>
-            </div>
-        </section>
-
-        <section class="post">
-            <div class="post-title">
-                My First Post
-            </div>
-            <div class="post-content">
-                Hey guys this is my first post ever!1!
-            </div>
-            <div class="post-footer">
-                <div class="upvote react"></div>
-                <div class="upvote-count react">70</div>
-                <div class="downvote react"></div>
-                <div class="comment react"></div>
-                <div class="dot react"></div>
-            </div>
-        </section>
-
-        <section class="post">
-            <div class="post-title">
-                My First Post
-            </div>
-            <div class="post-content">
-                Hey guys this is my first post ever!1!
-            </div>
-            <div class="post-footer">
-                <div class="upvote react"></div>
-                <div class="upvote-count react">70</div>
-                <div class="downvote react"></div>
-                <div class="comment react"></div>
-                <div class="dot react"></div>
-            </div>
-        </section>
+        
     </main>
 </body>
 <script defer src="./script.js"></script>
