@@ -30,6 +30,8 @@ class Post {
         this.comments = [];
         this.color = color;
         this.div = this.toDiv();
+        this.upvoted = false;
+        this.downvoted = false;
     }
 
     toDiv(){
@@ -41,7 +43,8 @@ class Post {
 
         const rv = quickCreate('section', 'post');
         rv.style.backgroundColor = style.colors[this.color];
-
+        const user = quickCreate('div', 'post-user');
+        user.innerText = "u/" + this.user;
         const title = quickCreate('div', 'post-title');
         title.innerText = this.title;
         const content = quickCreate('div', 'post-content');
@@ -88,6 +91,7 @@ class Post {
         footer.appendChild(comment);
         footer.appendChild(dot);
 
+        rv.appendChild(user);
         rv.appendChild(title);
         rv.appendChild(content);
         rv.appendChild(footer);
@@ -96,14 +100,31 @@ class Post {
     }
 
     upvote(){
-        this.numUpvotes++;
-        karma++;
+        if (!this.upvoted && !this.downvoted){
+            this.numUpvotes++;
+            karma++;
+            this.upvoted = true;
+        }
+        else if (!this.upvoted){
+            //if post is already downvoted
+            this.numUpvotes++;
+            this.downvoted = false;
+        }
         const counter = this.div.querySelector('.upvote-count');
         counter.innerText = this.numUpvotes;
+        
     }
 
     downvote(){
-        this.numUpvotes--;
+        if (!this.downvoted && !this.upvoted){
+            this.numUpvotes--;
+            this.downvoted = true;
+        }
+        else if (!this.downvoted){
+            //if post is already upvoted
+            this.numUpvotes--;
+            this.upvoted = false;
+        }
         const counter = this.div.querySelector('.upvote-count');
         counter.innerText = this.numUpvotes;
     }
@@ -127,6 +148,11 @@ class Comment {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    if(localStorage.getItem('posts')){
+        //USE JSON
+        posts = localStorage.getItem('posts');
+    }
+
     //Load page
     render();
 
@@ -144,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     //User setup
     if(!localStorage.getItem('username')){
+        console.log("I believe I have no username!");
         const welcome = document.getElementById('welcome');
         welcome.style.display = "block";
         document.body.style.overflow = "hidden";
@@ -152,6 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
         userInput.addEventListener('keydown', function(event){
             if (event.key === 'Enter') {
                 username = userInput.value;
+                localStorage.setItem('username', username);
                 welcome.style.display = 'none';
                 document.body.style.overflow = "visible";
                 document.getElementById('username').innerText = username;
@@ -189,15 +217,43 @@ function joinLeaveSubreddit(){
 
 function showEditDialog(){
     const edit = document.getElementById('edit');
+    const none = document.getElementById('edit-none');
+    const some = document.getElementById('edit-some');
+    const all = document.getElementById('edit-all');
+    if (karma < 50){
+        none.style.display = 'block';
+        some.style.display = 'none';
+        all.style.display = 'none';
+    }
+    else if (karma < 200){
+        some.style.display = 'block';
+        none.style.display = 'none';
+        all.style.display = 'none';
+    }
+    else{
+        all.style.display = 'block';
+        none.style.display = 'none';
+        some.style.display = 'none';
+    }
     edit.style.display = 'block';
 }
 
 function showMakePost(){
     const makePost = document.getElementById('make-post');
-    colors = makePost.querySelectorAll('.color');
-    colors.forEach((color, i) => {
-        color.style.backgroundColor = style.colors[i];
-      });
+    const postAllow = document.getElementById('post-allowed');
+    const disallow = documnet.getElementById('post-not-allowed');
+    if (isMember){
+        colors = makePost.querySelectorAll('.color');
+        colors.forEach((color, i) => {
+            color.style.backgroundColor = style.colors[i];
+        });
+        postAllow.style.display = 'block';
+        disallow.style.display = 'none';
+    }
+    else{
+        postAllow.style.display = 'none';
+        disallow.style.display = 'block';
+    }
     makePost.style.display = 'block';
 }
 
@@ -211,20 +267,23 @@ function render(){
 }
 
 function makePost(){
+    const makePost = document.getElementById('make-post');
     const title = document.getElementById('new-post-title').value;
     const text = document.getElementById('new-post-text').value;
     let color;
     const radios = document.querySelectorAll('input[name="color"]');
     radios.forEach(radio => {
         if (radio.checked) {
-            color = radio;
+            color = radio.value;
         }
     });
 
     const post = new Post(username, title, text, color);
     posts.push(post);
+    karma += 5;
+    localStorage.setItem('karma', karma);
     render();
-
+    makePost.style.display = 'none';
 }
 
 function writeComment(){

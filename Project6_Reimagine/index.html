@@ -24,7 +24,7 @@
         </div>
     </header>
 
-    <dialog id="welcome">
+    <dialog id="welcome" style="display: none;">
         <p>Hello! Welcome to Reddit Reimagined.</p>
         <p>This project is meant to challenge how we view online spaces like reddit.</p>
         <p>Please enter your username to begin.</p>
@@ -50,47 +50,72 @@
         <div data-action="close" class="react float-right">
             <img data-action="close" src="./Graphics/x.svg">
         </div>
-        <p>You do not have enough Karma to make edits. Become a part of the community to influence it.</p>
-        <p>Here are some ways to obtain Karma</p>
-        <ul>
-            <li>Like posts</li>
-            <li>Make posts</li>
-            <li>Make comments</li>
-        </ul>
+        <div id="edit-none">
+            <p>You do not have enough Karma to make edits. Become a part of the community to influence it.</p>
+            <p>Here are some ways to obtain Karma</p>
+            <ul>
+                <li>Like posts</li>
+                <li>Make posts</li>
+                <li>Make comments</li>
+            </ul>
+        </div>
+        <div id="edit-some">
+            <p>Congrats! You have enough Karma to begin influencing the style of the subreddit</p>
+            <p>Get more Karma for even more priveledges.</p>
+        </div>
+        <div id="edit-all">
+            <p>You have enough Karma to have full editing priveledges on this subreddit!</p>
+        </div>
+        
     </section>
 
     <section id="make-post" class="panel target-parent">
         <div data-action="close" class="react float-right">
             <img data-action="close" src="./Graphics/x.svg">
         </div>
-        <p>Make posts here.</p>
-        <!--Semantic HTML provided by chatGPT-->
-        <fieldset>
-            <legend>Choose a color:</legend>
-            <label for="color1" style="display: inline-block; position: relative;">
-                <input type="radio" id="color1" name="color" value="0" style="position: absolute;">
-                <div class="color"></div>
-            </label>
-                
-            <label for="color2" style="display: inline-block; position: relative;">
-                <input type="radio" id="color2" name="color" value="1" style=" position: absolute;">
-                <div class="color"></div>
-            </label>
-            <label for="color3" style="display: inline-block; position: relative;">
-                <input type="radio" id="color3" name="color" value="2" style=" position: absolute;">
-                <div class="color"></div>
-            </label>
-            <label for="color4" style="display: inline-block; position: relative;">
-                <input type="radio" id="color4" name="color" value="3" style=" position: absolute;">
-                <div class="color"></div>
-            </label>
-        </fieldset>
-        <input id='new-post-title' type="text" placeholder="Title">
-        <br>
-        <textarea id='new-post-text' placeholder="Write something"></textarea>
-        <button onclick="makePost()">Post</button>
+        <div id="post-not-allowed">
+            <p>You must join the subreddit to make posts!</p>
+        </div>
+        <div id="post-allowed">
+            <p>Make posts here.</p>
+            <!--Semantic HTML provided by chatGPT-->
+            <fieldset>
+                <legend>Choose a color:</legend>
+                <label for="color1" style="display: inline-block; position: relative;">
+                    <input type="radio" id="color1" name="color" value="0" style="position: absolute;">
+                    <div class="color"></div>
+                </label>
+                    
+                <label for="color2" style="display: inline-block; position: relative;">
+                    <input type="radio" id="color2" name="color" value="1" style=" position: absolute;">
+                    <div class="color"></div>
+                </label>
+                <label for="color3" style="display: inline-block; position: relative;">
+                    <input type="radio" id="color3" name="color" value="2" style=" position: absolute;">
+                    <div class="color"></div>
+                </label>
+                <label for="color4" style="display: inline-block; position: relative;">
+                    <input type="radio" id="color4" name="color" value="3" style=" position: absolute;">
+                    <div class="color"></div>
+                </label>
+            </fieldset>
+            <input id='new-post-title' type="text" placeholder="Title">
+            <br>
+            <textarea id='new-post-text' placeholder="Write something"></textarea>
+            <button onclick="makePost()">Post</button>
+        </div>
+        
     </section>
-    <nav><div id="sort"></div></nav>
+    <nav>
+        <div id="sort">
+            Sort
+            <div id="sort-options">
+                <p>New</p>
+                <p>Top</p>
+                <p>Coolest</p>
+            </div>
+        </div>
+    </nav>
     <main>
         
     </main>
