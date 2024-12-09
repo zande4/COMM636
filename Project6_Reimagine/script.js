@@ -308,6 +308,8 @@ function makePost(){
     localStorage.setItem('karma', karma);
     render();
     makePost.style.display = 'none';
+    document.getElementById('new-post-title').value = "";
+    document.getElementById('new-post-text').value = "";
 }
 
 function writeComment(){
