@@ -83,6 +83,7 @@ header{
 }
 
 .react{
+    color: black;
     border-radius: 50%;
     background-color: gray;
     display: inline-block;
