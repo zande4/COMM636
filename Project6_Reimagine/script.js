@@ -1,6 +1,5 @@
 //TO DO:
 //main features:
-// -sort
 // -comment
 // -report
 // -customize
@@ -12,14 +11,14 @@ let pfpSrc = "";
 let karma = 0;
 let sort = "new";
 let numPosts = 0;
-const DEFAULT_COLORS = ["#FFFFFF", "#000000", "#CCCCCC", "#333333"];
+const DEFAULT_COLORS = ["rgb(255, 255, 255)", "rgb(0, 0, 0)", "rgb(150, 150, 150)", "rgb(200, 200, 200)"];
 let style = {
     colors: DEFAULT_COLORS, 
 }
 //each post has an id, title, number of upvotes, array of comments, and bodyText
 
 class Post {
-    constructor(user, title, bodyText, color) {
+    constructor(user, title, bodyText, color, textColor) {
         this.id = numPosts;
         numPosts++;
         this.user = user;
@@ -28,6 +27,7 @@ class Post {
         this.numUpvotes = 0;
         this.comments = [];
         this.color = color;
+        this.textColor = getComplementaryColor(style.colors[(textColor)]);;
         this.div = this.toDiv();
         this.upvoted = false;
         this.downvoted = false;
@@ -41,14 +41,16 @@ class Post {
         }
 
         const rv = quickCreate('section', 'post');
+        rv.style.color = this.textColor;
         rv.style.backgroundColor = style.colors[this.color];
-        const user = quickCreate('div', 'post-user');
+        const user = quickCreate('div', 'post-content');
         user.innerText = "u/" + this.user;
         const title = quickCreate('div', 'post-title');
         title.innerText = this.title;
         const content = quickCreate('div', 'post-content');
         content.innerText = this.bodyText;
         const footer = quickCreate('div', 'post-footer');
+        const commentPrev = quickCreate('div', 'comment-preview');
 
         const upvote = quickCreate('div', 'upvote');
         upvote.classList.add('react');
@@ -94,6 +96,7 @@ class Post {
         rv.appendChild(title);
         rv.appendChild(content);
         rv.appendChild(footer);
+        rv.appendChild(commentPrev);
         rv.setAttribute('id', this.id);
         return rv;
     }
@@ -132,8 +135,8 @@ class Post {
 
 let posts = [
     new Post("Zoe", "Don't you guys think our subreddit is super boring looking?", 
-        "I mean what's even the point of visiting a subreddit that looks so dull and uninteresting?", "0"),
-    new Post("Kelsey", "my second post", "", "0")
+        "I mean what's even the point of visiting a subreddit that looks so dull and uninteresting?", "0", "0"),
+    new Post("Kelsey", "my second post", "", "0", "0")
 ];
 
 class Comment {
@@ -167,6 +170,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+    const colorPicker = document.getElementById('new-color-all');
+    colorPicker.addEventListener('change', function() {
+        handleColorSelect(colorPicker)
+    });
+    document.add
+    const textArea = document.getElementById('new-post-text');
+    document.querySelectorAll('input[name="color"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+            textArea.style.backgroundColor = style.colors[this.value];
+        });
+    });
+    document.querySelectorAll('input[name="text-color"]').forEach(radio => {
+        radio.addEventListener('change', function () {
+            textArea.style.color = getComplementaryColor(style.colors[this.value]);
+        });
+      });      
 
     //User setup
     if(!localStorage.getItem('username')){
@@ -195,10 +214,8 @@ document.addEventListener('DOMContentLoaded', function() {
         karma = localStorage.getItem('karma');
     }
     if(localStorage.getItem('isMember')){
-        isMember = localStorage.getItem('isMember');
-        if(isMember){
-            console.log("I just set isMember to true by reading local storage!");
-        }
+        //ChatGPT provided this solution for retrieving booleans from localStorage which only stores strings
+        isMember = (localStorage.getItem('isMember') === 'true');
     }
     if(localStorage.getItem('style')){
         style = localStorage.getItem('style');
@@ -245,13 +262,42 @@ function showEditDialog(){
         some.style.display = 'block';
         none.style.display = 'none';
         all.style.display = 'none';
+        let colors = some.querySelectorAll('.color');
     }
     else{
         all.style.display = 'block';
         none.style.display = 'none';
         some.style.display = 'none';
+        let colors = all.querySelectorAll('.color');
+        colors.forEach((color, i) => {
+            color.style.backgroundColor = style.colors[i];
+        });
+
     }
     edit.style.display = 'block';
+}
+
+function handleColorSelect(colorPicker){
+    console.log("running");
+    let selection = colorPicker.parentNode.children;
+    let selections;
+    Array.from(selection).forEach((elem) =>{
+        if (elem.classList.contains("selected")){
+            selections = elem;
+        }
+    });
+    if (selections){
+        selections.style.backgroundColor = colorPicker.value;
+    }
+}
+
+function select(element){
+    const elements = element.parentNode.children;
+    Array.from(elements).forEach((elem) => {
+        elem.classList.remove('selected');
+    });
+    element.classList.add('selected');
+    return element;
 }
 
 function showMakePost(){
@@ -259,9 +305,14 @@ function showMakePost(){
     const postAllow = document.getElementById('post-allowed');
     const disallow = document.getElementById('post-not-allowed');
     if (isMember){
-        colors = makePost.querySelectorAll('.color');
+        colors = makePost.querySelectorAll('.bg');
         colors.forEach((color, i) => {
+            console.log(style.colors[i]);
             color.style.backgroundColor = style.colors[i];
+        });
+        textColors = makePost.querySelectorAll('.text');
+        textColors.forEach((color, i) => {
+            color.style.backgroundColor = getComplementaryColor(style.colors[i]);
         });
         postAllow.style.display = 'block';
         disallow.style.display = 'none';
@@ -290,6 +341,22 @@ function render(){
     }
 }
 
+function switchSort(type){
+    sort = type;
+    render();
+}
+
+//function by ChatGPT, converts the hex into RGB and inverts each color channel.
+function getComplementaryColor(rgb) {
+    const match = rgb.match(/^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/);
+    const r = 255 - parseInt(match[1], 10);
+    const g = 255 - parseInt(match[2], 10);
+    const b = 255 - parseInt(match[3], 10);
+
+    // Return the complementary color in RGB format
+    return `rgb(${r}, ${g}, ${b})`
+  }
+
 function makePost(){
     const makePost = document.getElementById('make-post');
     const title = document.getElementById('new-post-title').value;
@@ -302,7 +369,15 @@ function makePost(){
         }
     });
 
-    const post = new Post(username, title, text, color);
+    let textColor;
+    const textRadios = document.querySelectorAll('input[name="text-color"]');
+    textRadios.forEach(radio => {
+        if (radio.checked) {
+            textColor = radio.value;
+        }
+    });
+
+    const post = new Post(username, title, text, color, textColor);
     posts.push(post);
     karma += 5;
     localStorage.setItem('karma', karma);
@@ -338,8 +413,15 @@ function fileUpload(triggerElementId, parentDivId){
       console.log("complete!");
 }
 
-function applyEdit(){
-    
+function applyEdit(editDialogNodeId){
+    console.log("edits applied!");
+    const parent = document.getElementById(editDialogNodeId);
+    const colors = parent.querySelectorAll('.color');
+    Array.from(colors).forEach((col, i) => {
+        console.log("print", col.style.backgroundColor);
+        style.colors[i] = col.style.backgroundColor;
+    });
+    parent.parentNode.style.display = "none";
 }
 
 function report(){

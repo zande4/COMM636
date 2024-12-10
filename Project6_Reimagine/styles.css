@@ -97,6 +97,32 @@ header{
     user-select: none;
 }
 
+fieldset{
+    display: inline-block;
+}
+
+/*speech bubble styling provided by ChatGPT*/
+.comment-preview{
+    position: relative;
+    max-width: 300px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    border: 2px solid #ccc;
+  }
+  
+  .comment-preview::before{
+    content: '';
+    position: absolute;
+    top: -20px;  /* Position the tail */
+    left: 20px;     /* Adjust tail to position correctly */
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #f0f0f0; /* Same color as the bubble's background */
+  }
+
 #subreddit-name{
     margin: 0px;
     float: left;
@@ -193,12 +219,17 @@ dialog{
 }
 
 .color{
+    display: inline-block;
     border-radius: 50%;
     border-width: 2px;
     border-style: solid;
+    border-color: gray;
     width: 20px;
     aspect-ratio: 1 / 1;
-    pointer-events: none;
     /*Because position is not absolute z-index will not apply, however, I need the element to otherwise be in the normal flow so absolute does not really work*/
     z-index: 2
+}
+
+.color.selected{
+    border-color: black;
 }

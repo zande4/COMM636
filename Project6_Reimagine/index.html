@@ -26,7 +26,10 @@
 
     <dialog id="welcome" style="display: none;">
         <p>Hello! Welcome to Reddit Reimagined.</p>
-        <p>This project is meant to challenge how we view online spaces like reddit.</p>
+        <p>
+            This project is meant to challenge how we view online spaces like reddit. 
+            I designed to project to emphasize self expression in the creation of community spaces.
+        </p>
         <p>Please enter your username to begin.</p>
         <div id="username-input-wrapper">
             <img class="pfp" src="./Graphics/logo.svg" id="pfp-selector">
@@ -63,9 +66,47 @@
         <div id="edit-some">
             <p>Congrats! You have enough Karma to begin influencing the style of the subreddit</p>
             <p>Get more Karma for even more priveledges.</p>
+            <p>Change the post background colors!</p>
+            <div>
+                <div class="color">
+
+                </div>
+                <div class="color">
+
+                </div>
+                <div class="color">
+
+                </div>
+            </div>
+            <input type="color" id="new-color-some" name="new-color" value="#ff0000">
         </div>
         <div id="edit-all">
             <p>You have enough Karma to have full editing priveledges on this subreddit!</p>
+            <p>Change the post background colors!</p>
+            <div>
+                <div class="color" onclick="select(this)">
+
+                </div>
+                <div class="color" onclick="select(this)">
+
+                </div>
+                <div class="color" onclick="select(this)">
+
+                </div>
+                <div class="color" onclick="select(this)">
+
+                </div>
+                <input type="color" id="new-color-all" name="new-color" value="#ff0000">
+                <button onclick="applyEdit('edit-all')">Apply</button>
+            </div>
+            <div id="subreddit-input-wrapper">
+                <p>Change Subreddit Image</p>
+                <img class="pfp" src="./Graphics/logo.svg" id="subreddit-pfp-selector">
+                <input type="file" id="subreddit-image-upload" accept="image/*" onchange="fileUpload('subreddit-image-upload', 'pfp-main')">
+                <p>Change Subreddit Banner</p>
+                <img src="" id="banner-selector">
+                <input type="file" id="banner-upload" accept="image/*" onchange="fileUpload('banner-upload', 'banner')">
+            </div>
         </div>
         
     </section>
@@ -81,23 +122,43 @@
             <p>Make posts here.</p>
             <!--Semantic HTML provided by chatGPT-->
             <fieldset>
-                <legend>Choose a color:</legend>
+                <legend>Choose a background color:</legend>
                 <label for="color1" style="display: inline-block; position: relative;">
                     <input type="radio" id="color1" name="color" value="0" style="position: absolute;">
-                    <div class="color"></div>
+                    <div class="color bg"></div>
                 </label>
                     
                 <label for="color2" style="display: inline-block; position: relative;">
                     <input type="radio" id="color2" name="color" value="1" style=" position: absolute;">
-                    <div class="color"></div>
+                    <div class="color bg"></div>
                 </label>
                 <label for="color3" style="display: inline-block; position: relative;">
                     <input type="radio" id="color3" name="color" value="2" style=" position: absolute;">
-                    <div class="color"></div>
+                    <div class="color bg"></div>
                 </label>
                 <label for="color4" style="display: inline-block; position: relative;">
                     <input type="radio" id="color4" name="color" value="3" style=" position: absolute;">
-                    <div class="color"></div>
+                    <div class="color bg"></div>
+                </label>
+            </fieldset>
+            <fieldset>
+                <legend>Choose a text color:</legend>
+                <label for="color1" style="display: inline-block; position: relative;">
+                    <input type="radio" id="color5" name="text-color" value="0" style="position: absolute;">
+                    <div class="color text"></div>
+                </label>
+                    
+                <label for="color2" style="display: inline-block; position: relative;">
+                    <input type="radio" id="color6" name="text-color" value="1" style=" position: absolute;">
+                    <div class="color text"></div>
+                </label>
+                <label for="color3" style="display: inline-block; position: relative;">
+                    <input type="radio" id="color7" name="text-color" value="2" style=" position: absolute;">
+                    <div class="color text"></div>
+                </label>
+                <label for="color4" style="display: inline-block; position: relative;">
+                    <input type="radio" id="color8" name="text-color" value="3" style=" position: absolute;">
+                    <div class="color text"></div>
                 </label>
             </fieldset>
             <input id='new-post-title' type="text" placeholder="Title">
@@ -111,9 +172,9 @@
         <div id="sort">
             Sort
             <div id="sort-options">
-                <p>New</p>
-                <p>Top</p>
-                <p>Coolest</p>
+                <p onclick="switchSort('new')">New</p>
+                <p onclick="switchSort('top')">Top</p>
+                <p onclick="switchSort('coolest')">Coolest</p>
             </div>
         </div>
     </nav>
