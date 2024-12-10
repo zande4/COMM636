@@ -1,17 +1,10 @@
-//TO DO:
-//main features:
-// -comment
-// -report
-// -customize
-// -create posts
-
 let isMember = false;
 let username = "";
 let pfpSrc = "";
 let karma = 0;
-let sort = "new";
+let sort = "top";
 let numPosts = 0;
-const DEFAULT_COLORS = ["rgb(255, 255, 255)", "rgb(0, 0, 0)", "rgb(150, 150, 150)", "rgb(200, 200, 200)"];
+const DEFAULT_COLORS = ["rgb(255, 255, 255)", "rgb(0, 0, 0)", "rgb(94, 88, 69)", "rgb(69, 78, 94)"];
 let style = {
     colors: DEFAULT_COLORS, 
 }
@@ -146,8 +139,17 @@ class Post {
 
 let posts = [
     new Post("Zoe", "Don't you guys think our subreddit is super boring looking?", 
-        "I mean what's even the point of visiting a subreddit that looks so dull and uninteresting?", "0", "0", "10"),
-    new Post("Kelsey", "my second post", "", "0", "0", "700")
+        "I mean what's even the point of visiting a subreddit that looks so dull and uninteresting? It makes me wan't to stop using reddit all together.", "0", "0", "700"),
+    new Post("anonymous_user", "Why you need to be paying attention to your Karma", 
+        "Assuming you've never used reddit before (why are you here if you don't use reddit), Karma is a measure of how active you are on the platform. " + 
+        "More important than that, on this subreddit you can start to change the way the page looks once you gain enough Karma. " +
+        "I've even heard that you can change the subreddit's profile image if you get enough Karma.", "0", "0", "10"),
+    new Post("beige_lover", "To those of you who think we need more variety", 
+        "People seem to forget that we have more than two colors on this page. Isn't this blue vibrant enough?", "3", "3", "5"),
+    new Post("csmajor", "I think there should be more customization features in the future!", 
+        "Right now we can only influence the way our subreddit looks a little bit. Imagine how things could be if there were even more opportunities for customization!" +
+        "What if we could change the upvote symbol, the post border style, or add more images? Each subreddit on reddit would have a very distinct feel and they would become distinguishable beyond just their content." +
+        "I think it would create a very collaborative atmosphere.", "1", "1", "2")
 ];
 
 class Comment {
@@ -255,8 +257,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     //adding default comments
-    posts[0].addComment('redditor4ever', "wow I think you're right!");
-
+    posts[0].addComment('redditor4ever', "I totally agree with you! But if you want to change the way the subreddit looks just raise yor Karma a bit so you can make edits.");
+    posts[0].addComment('user3456432', "Idk I think it looks cool.");
+    posts[0].addComment('helpfulhand', 'To add on to another comment, I saw another thread earlier that explains how Karma works in more depth. You should read it for more info.');
+    posts[1].addComment('tireduninspired', 'To name one of the customization options, you can change the colors that other users get to pick from when making a post.');
+    posts[1].addComment('cyndaquil5', 'Really? It will affect the decisions other users get to make?');
+    posts[1].addComment('lostr4dit0r', "I'm a bit confused. How do you change the way the site looks? Like where do I go...?");
+    posts[1].addComment('helpfulhand', 'You just need to click the pencil at the top of the page. It will look different depending on how much Karma you have.');
+    posts[2].addComment('meanguy', `why don't you go join a different subreddit?`);
+    posts[3].addComment('Zoe', `I agree. One of the features I was thinking of adding was reaction stickers. Reddit currently has an awards system where you can react to posts ` + 
+        `with unique reaction images, but they cost real world money to use and they blend in with the rest of the UI at the bottom of each post. `+
+        `I imagined stickers as being free reaction images that are customizable by subreddit that can be placed and resized freely across the white space of a post. ` +
+        `This ended up not being possible during the time frame.`
+    )
     render();
 
 });
@@ -337,7 +350,7 @@ function postComment(postObject){
     const newComment = postObject.addComment(username, text.value);
     document.getElementById("comments-container").appendChild(newComment.div);
     text.value = " ";
-    karma +=3;
+    karma +=5;
     localStorage.setItem('karma', 'karma');
 }
 
@@ -391,6 +404,13 @@ function showMakePost(){
 function render(){
     const main = document.querySelector('main');
     const karmaCount = document.getElementById('karma');
+    const pfp = document.getElementById('pfp-overview');
+    const pfpUser = document.getElementById('pfp-user');
+    if (pfpSrc){
+        pfp.setAttribute('src', pfpSrc);
+        pfpUser.setAttribute('src', pfpSrc);
+    }
+    
     karmaCount.innerText = karma;
     console.log(karma);
     if (sort == "new"){
@@ -444,7 +464,7 @@ function makePost(){
 
     const post = new Post(username, title, text, color, textColor, "0");
     posts.push(post);
-    karma += 5;
+    karma += 10;
     console.log("karma +5");
     localStorage.setItem('karma', karma);
     render();

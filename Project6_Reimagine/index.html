@@ -12,7 +12,7 @@
         <img id="banner">
         <div id="banner-wrapper">
             <div>
-                <img id="pfp-main" class="pfp">
+                <img id="pfp-main" class="pfp" src="./Graphics/logo.svg">
                 <h1 id="subreddit-name">r/NewOldReddit</h1>
             </div>
             <div id="rh-banner-wrapper">
@@ -33,7 +33,7 @@
         <p>Please enter your username to begin.</p>
         <div id="username-input-wrapper">
             <img class="pfp" src="./Graphics/logo.svg" id="pfp-selector">
-            <input type="file" id="pfp-image-upload" accept="image/*" onchange="(function() { fileUpload('pfp-image-upload', 'pfp-selector'); fileUpload('pfp-image-upload', 'pfp-user');})()">
+            <input type="file" id="pfp-image-upload" accept="image/*" onchange="(function() { fileUpload('pfp-image-upload', 'pfp-selector'); fileUpload('pfp-image-upload', 'pfp-user'); fileUpload('pfp-image-upload', 'pfp-overview')})()">
             <div>
                 <label for="username-input">Username: </label>
                 <input id="username-input">
@@ -45,7 +45,7 @@
         <div data-action="close" class="react float-right">
             <img data-action="close" src="./Graphics/x.svg">
         </div>
-        <img class="pfp" id="pfp-overview">
+        <img class="pfp" id="pfp-overview" src="./Graphics/logo.svg">
         u/<span id="username"></span>
         <p>Karma: <span id="karma"></span></p>
     </section>
@@ -168,8 +168,7 @@
                     <div class="color text"></div>
                 </label>
             </fieldset>
-            <input id='new-post-title' type="text" placeholder="Title">
-            <br>
+            <input id='new-post-title' type="text" placeholder="Title" style="display: block; margin: 10px 0px 0px 0px;">
             <textarea id='new-post-text' placeholder="Write something"></textarea>
             <button onclick="makePost()">Post</button>
         </div>
