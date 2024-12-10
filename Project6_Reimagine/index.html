@@ -54,6 +54,9 @@
         <div data-action="close" class="react float-right">
             <img data-action="close" src="./Graphics/x.svg">
         </div>
+        <div id="edit-not-allowed">
+            <p>You must be a member to edit the subreddit style!</p>
+        </div>
         <div id="edit-none">
             <p>You do not have enough Karma to make edits. Become a part of the community to influence it.</p>
             <p>Here are some ways to obtain Karma</p>
@@ -68,17 +71,21 @@
             <p>Get more Karma for even more priveledges.</p>
             <p>Change the post background colors!</p>
             <div>
-                <div class="color">
+                <div class="color" onclick="select(this)">
 
                 </div>
-                <div class="color">
+                <div class="color" onclick="select(this)">
 
                 </div>
-                <div class="color">
+                <div class="color" onclick="select(this)">
 
                 </div>
+                <div class="color" onclick="select(this)">
+
+                </div>
+                <input type="color" id="new-color-some" name="new-color" value="#ff0000">
+                <button onclick="applyEdit('edit-some')">Apply</button>
             </div>
-            <input type="color" id="new-color-some" name="new-color" value="#ff0000">
         </div>
         <div id="edit-all">
             <p>You have enough Karma to have full editing priveledges on this subreddit!</p>
@@ -143,20 +150,20 @@
             </fieldset>
             <fieldset>
                 <legend>Choose a text color:</legend>
-                <label for="color1" style="display: inline-block; position: relative;">
+                <label for="color5" style="display: inline-block; position: relative;">
                     <input type="radio" id="color5" name="text-color" value="0" style="position: absolute;">
                     <div class="color text"></div>
                 </label>
                     
-                <label for="color2" style="display: inline-block; position: relative;">
+                <label for="color6" style="display: inline-block; position: relative;">
                     <input type="radio" id="color6" name="text-color" value="1" style=" position: absolute;">
                     <div class="color text"></div>
                 </label>
-                <label for="color3" style="display: inline-block; position: relative;">
+                <label for="color7" style="display: inline-block; position: relative;">
                     <input type="radio" id="color7" name="text-color" value="2" style=" position: absolute;">
                     <div class="color text"></div>
                 </label>
-                <label for="color4" style="display: inline-block; position: relative;">
+                <label for="color8" style="display: inline-block; position: relative;">
                     <input type="radio" id="color8" name="text-color" value="3" style=" position: absolute;">
                     <div class="color text"></div>
                 </label>
@@ -168,6 +175,21 @@
         </div>
         
     </section>
+    <section id="comments" class="target-parent">
+        <div data-action="close" class="react float-right">
+            <img data-action="close" src="./Graphics/x.svg">
+        </div>
+        <section id="comments-panel" class="card">
+            <div id="comments-container">
+
+            </div>
+            <div id="make-comment">
+                <input type="text" id="comment-input" style="width: 80%;">
+                <button id="comment-button">Comment</button>
+            </div>
+        </section>
+    </section>
+
     <nav>
         <div id="sort">
             Sort
@@ -182,5 +204,5 @@
         
     </main>
 </body>
-<script defer src="./script.js"></script>
+<script defer src="./Scripts/script.js"></script>
 </html>

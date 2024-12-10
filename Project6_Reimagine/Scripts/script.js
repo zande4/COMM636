@@ -18,13 +18,13 @@ let style = {
 //each post has an id, title, number of upvotes, array of comments, and bodyText
 
 class Post {
-    constructor(user, title, bodyText, color, textColor) {
+    constructor(user, title, bodyText, color, textColor, numUpvotes) {
         this.id = numPosts;
         numPosts++;
         this.user = user;
         this.title = title;
         this.bodyText = bodyText;
-        this.numUpvotes = 0;
+        this.numUpvotes = numUpvotes;
         this.comments = [];
         this.color = color;
         this.textColor = getComplementaryColor(style.colors[(textColor)]);;
@@ -79,6 +79,9 @@ class Post {
         const comment = quickCreate('div', 'comment')
         comment.classList.add('react');
         comment.appendChild(commentImg);
+        comment.addEventListener('click', (event) => {
+            showComments(this);
+        });
 
         const dot = quickCreate('div', 'dot');
         dot.classList.add('react');
@@ -105,6 +108,8 @@ class Post {
         if (!this.upvoted && !this.downvoted){
             this.numUpvotes++;
             karma++;
+            localStorage.setItem('karma', karma);
+            console.log("karma +1");
             this.upvoted = true;
         }
         else if (!this.upvoted){
@@ -131,22 +136,35 @@ class Post {
         counter.innerText = this.numUpvotes;
         render();
     }
+
+    addComment(user, text){
+        const rv = new Comment(user, text);
+        this.comments.push(rv);
+        return rv;
+    }
 }
 
 let posts = [
     new Post("Zoe", "Don't you guys think our subreddit is super boring looking?", 
-        "I mean what's even the point of visiting a subreddit that looks so dull and uninteresting?", "0", "0"),
-    new Post("Kelsey", "my second post", "", "0", "0")
+        "I mean what's even the point of visiting a subreddit that looks so dull and uninteresting?", "0", "0", "10"),
+    new Post("Kelsey", "my second post", "", "0", "0", "700")
 ];
 
 class Comment {
     constructor(user, commentText){
         this.user = user;
         this.commentText = commentText;
+        this.div = this.toDiv();
     }
 
     toDiv(){
-
+        const rv = document.createElement('div');
+        rv.classList.add('comment');
+        rv.innerText += ("u/" + this.user);
+        const content = document.createElement('p');
+        content.innerText = this.commentText;
+        rv.appendChild(content);
+        return rv;
     }
 }
 
@@ -167,14 +185,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const parent = event.target.closest('.target-parent');
             if (parent) {
                 parent.style.display = 'none';
+                document.body.style.overflow = "visible";
             }
         }
     });
+    document.getElementById('new-color-some').addEventListener('change', function() {
+        handleColorSelect(document.getElementById('new-color-some'));
+    });
     const colorPicker = document.getElementById('new-color-all');
     colorPicker.addEventListener('change', function() {
-        handleColorSelect(colorPicker)
+        handleColorSelect(colorPicker);
     });
-    document.add
     const textArea = document.getElementById('new-post-text');
     document.querySelectorAll('input[name="color"]').forEach(radio => {
         radio.addEventListener('change', function () {
@@ -211,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
         pfpSrc = localStorage.getItem('pfpSrc');
     }
     if(localStorage.getItem('karma')){
-        karma = localStorage.getItem('karma');
+        karma = parseInt(localStorage.getItem('karma'), 10);
     }
     if(localStorage.getItem('isMember')){
         //ChatGPT provided this solution for retrieving booleans from localStorage which only stores strings
@@ -232,14 +253,21 @@ document.addEventListener('DOMContentLoaded', function() {
     else{
         join.innerText = 'Join';
     }
+
+    //adding default comments
+    posts[0].addComment('redditor4ever', "wow I think you're right!");
+
     render();
 
 });
 
 function joinLeaveSubreddit(){
     if(isMember){
-        document.getElementById('join-button').innerText = 'Join';
-        isMember = false;
+        if(confirm("Are you sure you want to leave this subreddit? You will lose all your Karma!")){
+            document.getElementById('join-button').innerText = 'Join';
+            isMember = false;
+            karma = 0;
+        }        
     }
     else{
         document.getElementById('join-button').innerText = 'Joined';
@@ -253,28 +281,64 @@ function showEditDialog(){
     const none = document.getElementById('edit-none');
     const some = document.getElementById('edit-some');
     const all = document.getElementById('edit-all');
-    if (karma < 50){
-        none.style.display = 'block';
-        some.style.display = 'none';
-        all.style.display = 'none';
-    }
-    else if (karma < 200){
-        some.style.display = 'block';
-        none.style.display = 'none';
-        all.style.display = 'none';
-        let colors = some.querySelectorAll('.color');
+    const nonEdit = document.getElementById('edit-not-allowed');
+    if(isMember){
+        if (karma < 50){
+            none.style.display = 'block';
+            some.style.display = 'none';
+            all.style.display = 'none';
+            nonEdit.style.display = 'none';
+        }
+        else if (karma < 200){
+            some.style.display = 'block';
+            none.style.display = 'none';
+            all.style.display = 'none';
+            nonEdit.style.display = 'none';
+            let colors = some.querySelectorAll('.color');
+            colors.forEach((color, i) => {
+                color.style.backgroundColor = style.colors[i];
+            });
+        }
+        else{
+            all.style.display = 'block';
+            none.style.display = 'none';
+            some.style.display = 'none';
+            nonEdit.style.display = 'none';
+            let colors = all.querySelectorAll('.color');
+            colors.forEach((color, i) => {
+                color.style.backgroundColor = style.colors[i];
+            });
+
+        }
     }
     else{
-        all.style.display = 'block';
+        nonEdit.style.display = 'block';
+        all.style.display = 'none';
         none.style.display = 'none';
         some.style.display = 'none';
-        let colors = all.querySelectorAll('.color');
-        colors.forEach((color, i) => {
-            color.style.backgroundColor = style.colors[i];
-        });
-
     }
     edit.style.display = 'block';
+}
+
+function showComments(postObject){
+    document.body.style.overflow = "hidden";
+    const comments = document.getElementById('comments');
+    commentContainer = document.getElementById("comments-container");
+    commentContainer.innerHTML = "";
+    comments.style.display = "block";
+    postObject.comments.forEach((comment) =>{
+        commentContainer.appendChild(comment.div);
+    });
+    document.getElementById('comment-button').onclick = () => postComment(postObject);
+}
+
+function postComment(postObject){
+    const text = document.getElementById('comment-input');
+    const newComment = postObject.addComment(username, text.value);
+    document.getElementById("comments-container").appendChild(newComment.div);
+    text.value = " ";
+    karma +=3;
+    localStorage.setItem('karma', 'karma');
 }
 
 function handleColorSelect(colorPicker){
@@ -328,6 +392,7 @@ function render(){
     const main = document.querySelector('main');
     const karmaCount = document.getElementById('karma');
     karmaCount.innerText = karma;
+    console.log(karma);
     if (sort == "new"){
         posts.sort((a, b) => b.id - a.id);
     }
@@ -361,7 +426,7 @@ function makePost(){
     const makePost = document.getElementById('make-post');
     const title = document.getElementById('new-post-title').value;
     const text = document.getElementById('new-post-text').value;
-    let color;
+    let color = 1;
     const radios = document.querySelectorAll('input[name="color"]');
     radios.forEach(radio => {
         if (radio.checked) {
@@ -369,7 +434,7 @@ function makePost(){
         }
     });
 
-    let textColor;
+    let textColor = color;
     const textRadios = document.querySelectorAll('input[name="text-color"]');
     textRadios.forEach(radio => {
         if (radio.checked) {
@@ -377,9 +442,10 @@ function makePost(){
         }
     });
 
-    const post = new Post(username, title, text, color, textColor);
+    const post = new Post(username, title, text, color, textColor, "0");
     posts.push(post);
     karma += 5;
+    console.log("karma +5");
     localStorage.setItem('karma', karma);
     render();
     makePost.style.display = 'none';
@@ -388,10 +454,6 @@ function makePost(){
 }
 
 function writeComment(){
-
-}
-
-function postComment(){
 
 }
 
@@ -422,14 +484,7 @@ function applyEdit(editDialogNodeId){
         style.colors[i] = col.style.backgroundColor;
     });
     parent.parentNode.style.display = "none";
-}
-
-function report(){
-
-}
-
-function checkAccessibility(){
-
+    render();
 }
 
 //get user data
